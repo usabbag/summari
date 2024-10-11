@@ -23,7 +23,7 @@ async function summarizePage(input, isUrl = true) {
     const completion = await openai.chat.completions.create({
         messages: [{ role: "user", content: `Can you provide a comprehensive summary of the given text? The summary should cover all the key points and main ideas presented in the original text, while also condensing the information into a concise and easy-to-understand format. Keep figures, numbers, and other salient points to make this summary alive and not boring. Please ensure that the summary includes relevant details and examples that support the main ideas, while avoiding any unnecessary information or repetition. The length of the summary should not be above 200 words. : ${text}` }],
         model: "gpt-4o",
-        max_tokens: 200,
+        max_tokens: 1000,
     });
 
     return completion.choices[0].message.content;
