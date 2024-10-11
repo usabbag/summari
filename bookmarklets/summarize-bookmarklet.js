@@ -9,6 +9,34 @@
         return document.body.innerText;
     }
 
+    // Function to create and display the loader
+    function showLoader() {
+        const loader = document.createElement('div');
+        loader.id = 'summaryLoader';
+        loader.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 10001;
+            font-family: Arial, sans-serif;
+        `;
+        loader.textContent = 'Summarizing...';
+        document.body.appendChild(loader);
+    }
+
+    // Function to remove the loader
+    function removeLoader() {
+        const loader = document.getElementById('summaryLoader');
+        if (loader) {
+            document.body.removeChild(loader);
+        }
+    }
+
     // Function to create and display the modal
     function showModal(summary, source) {
         // Check if modal already exists
@@ -70,17 +98,21 @@
     // Main execution
     async function executeSummarization() {
         const url = getPageUrl();
+        showLoader();
         try {
             const summary = await getSummary(url);
+            removeLoader();
             showModal(summary, 'URL');
         } catch (error) {
             console.error('Error summarizing URL:', error);
             try {
                 const text = getPageContent();
                 const summary = await getSummary(null, text);
+                removeLoader();
                 showModal(summary, 'Page Text');
             } catch (fallbackError) {
                 console.error('Error summarizing text content:', fallbackError);
+                removeLoader();
                 alert('Failed to summarize the page. Please try again later.');
             }
         }
