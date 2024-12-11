@@ -1,48 +1,80 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Web Page Summarizer</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 20px;
-            line-height: 1.6;
-        }
-        .bookmarklet {
-            display: inline-block;
-            padding: 10px 20px;
-            background: #007bff;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            margin: 20px 0;
-        }
-        .steps {
-            background: #f5f5f5;
-            padding: 20px;
-            border-radius: 8px;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summariz.io - Bookmarklet AI Summaries</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-    <h1>Web Page Summarizer</h1>
-    
-    <div class="steps">
-        <h2>One-Time Setup</h2>
-        <ol>
-            <li>Get your OpenAI API key from <a href="https://platform.openai.com/api-keys" target="_blank">OpenAI's website</a></li>
-            <li>Drag this button to your bookmarks bar: 
-                <a class="bookmarklet" href="javascript:(function(){/* minified code here */})();">
-                    📝 Summarize
+    <div class="container">
+        <div class="hero">
+            <div class="hero-content">
+                <div class="title-with-logo">
+                    <img src="assets/summarizio.png" alt="Summarizio Logo" class="logo">
+                    <h1>Summariz.io</h1>
+                </div>
+                <p class="tagline">Dense, meaningful AI summaries of any page in seconds</p>
+                <a class="bookmarklet" href="javascript:(function(){function e(){return window.location.href}function t(){return document.body.innerText}function n(){const e=document.createElement(&quot;div&quot;);e.id=&quot;summaryLoader&quot;,e.style.cssText=&quot;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background-color:#007311;color:white;padding:20px;border-radius:10px;z-index:10001;font-family:Arial,sans-serif;&quot;,e.textContent=&quot;Summarizing...&quot;,document.body.appendChild(e)}function o(){const e=document.getElementById(&quot;summaryLoader&quot;);e&&document.body.removeChild(e)}function r(e,t){if(!document.getElementById(&quot;summaryModal&quot;)){const n=document.createElement(&quot;div&quot;);n.id=&quot;summaryModal&quot;,n.style.cssText=&quot;position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:10000;font-family:-apple-system,system-ui,sans-serif;&quot;;const o=document.createElement(&quot;div&quot;);o.style.cssText=&quot;background-color:#fff;padding:24px;border-radius:12px;width:600px;max-width:90%;max-height:80vh;overflow-y:auto;font-size:16px;line-height:1.5;box-shadow:0 4px 12px rgba(0,0,0,0.15);&quot;,o.innerHTML=`<h2 style=&quot;margin:0 0 16px;font-size:20px;color:#1f2937&quot;>Summary</h2><p style=&quot;margin:0 0 16px;font-size:14px;color:#4b5563&quot;><strong>Source: ${t}</strong></p><p style=&quot;margin:0;font-size:18px;color:#1f2937&quot;>${e}</p><button id=&quot;closeModal&quot; style=&quot;margin-top:20px;padding:8px 16px;background:#007311;color:white;border:none;border-radius:6px;cursor:pointer&quot;>Close</button>`,n.appendChild(o),document.body.appendChild(n),document.getElementById(&quot;closeModal&quot;).addEventListener(&quot;click&quot;,()=>{document.body.removeChild(n)})}}function i(){let e=localStorage.getItem(&quot;openai_api_key&quot;);return e||((e=prompt(&quot;Please enter your OpenAI API key&quot;))&&localStorage.setItem(&quot;openai_api_key&quot;,e)),e}async function a(e,t){const n=i();if(!n)throw new Error(&quot;API key required&quot;);const o=await fetch(&quot;https://ulysse-bookmarkdigest.web.val.run&quot;,{method:&quot;POST&quot;,headers:{&quot;Content-Type&quot;:&quot;application/json&quot;,&quot;X-OpenAI-Key&quot;:n},body:JSON.stringify({url:e,text:t}),mode:&quot;cors&quot;});if(!o.ok){if(401===o.status)throw localStorage.removeItem(&quot;openai_api_key&quot;),new Error(&quot;Invalid API key&quot;);throw new Error(`HTTP error! status: ${o.status}`)}return(await o.json()).summary}async function s(){const i=e();n();try{const e=await a(i);o(),r(e,&quot;URL&quot;)}catch(e){console.error(&quot;Error:&quot;,e);try{const e=t(),i=await a(null,e);o(),r(i,&quot;Page Text&quot;)}catch(e){console.error(&quot;Error:&quot;,e),o(),alert(&quot;Failed to summarize the page. Please try again later.&quot;)}}}s()})();">
+                    +Summarize
                 </a>
-            </li>
-            <li>The first time you use it, you'll be prompted for your API key</li>
-        </ol>
-    </div>
+                <small>↑ Drag to your bookmarks bar</small>
+            </div>
 
-    <h2>Privacy</h2>
-    <p>Your API key is stored only in your browser's local storage and is never sent to our servers directly.</p>
+            <div class="hero-setup">
+                <h2>Quick Setup</h2>
+                <ol class="steps">
+                    <li style="font-size: 1.4rem;">Get your OpenAI API key from <a href="https://platform.openai.com/api-keys" target="_blank">platform.openai.com</a></li>
+                    <li style="font-size: 1.4rem;">Drag the Summarize button to your bookmarks bar</li>
+                    <li style="font-size: 1.4rem;">Click the bookmark on any webpage - you'll be asked for your API key the first time</li>
+                </ol>
+                <p class="feature">
+                    <strong>Note:</strong> Your API key is securely stored in your browser - you'll only need to enter it once.
+                </p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Features</h2>
+            <div class="feature">
+                <h3>Fast & Easy</h3>
+                <p>Run this bookmarklet on any browser to get an instant summary. No app to install.</p>
+            </div>
+            <div class="feature">
+                <h3>Dual Extraction Methods</h3>
+                <p>The bookmarklet can summarize content using either the page URL or the text on the page, ensuring flexibility and accuracy.</p>
+            </div>
+            <div class="feature">
+                <h3>Opinionated Summaries</h3>
+                <p>We've crafted the perfect prompt to give you dense, 200-word summaries that actually explain what matters. No bullet points, just clear insights.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Installation Guide</h2>
+            <div class="platform-instructions">
+                <div>
+                    <h3>Mac</h3>
+                    <ol>
+                        <li>Show bookmarks bar with ⌘+Shift+B</li>
+                        <li>Drag the Summarize button to your bookmarks bar</li>
+                        <li>Enter your API key when prompted (first use only)</li>
+                    </ol>
+                </div>
+                <div>
+                    <h3>iOS</h3>
+                    <ol>
+                        <li>Copy the Summarize button link</li>
+                        <li>Create a new bookmark in Safari</li>
+                        <li>Paste the copied link as the bookmark URL</li>
+                        <li>Enter your API key when prompted (first use only)</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        Tool made by <a href="https://harsa.inc">Harsa, Inc</a>
+    </footer>
 </body>
 </html>

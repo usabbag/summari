@@ -1,40 +1,31 @@
-# Web Page Summarizer Bookmarklet
+# Summariz.io
 
-This bookmarklet uses Val Town to provide quick summaries of web pages you're viewing. It's a convenient tool for getting the gist of an article or webpage without reading the entire content.
+<p align="center">
+  <img src="assets/summarizio.png" width="120" alt="Summarizio Logo">
+</p>
 
-## How It Works
+A browser-based tool that generates dense, meaningful 200-word summaries of any webpage. No bullet points, just clear insights.
 
-1. **Bookmarklet Activation**: When you click the bookmarklet in your browser, it triggers a JavaScript function.
+## Quick Setup
 
-2. **Page URL Retrieval**: The script gets the current page's URL using `window.location.href`.
+1. Get your OpenAI API key from [platform.openai.com](https://platform.openai.com/api-keys)
+2. Visit [summariz.io](https://summariz.io) and drag the bookmarklet to your bookmarks bar
+3. Click the bookmark on any webpage to get an instant summary
 
-3. **API Request**: The URL is sent to a Val Town function (hosted at `https://https://ulysse-bookmarkdigest.web.val.run`) via a POST request.
+## Features
 
-4. **Text Summarization**: The Val Town function processes the webpage content and generates a summary.
+- Dense 200-word summaries that explain "what's this about!"
+- Works on Mac and iOS Safari
+- Powered by GPT-4 for high-quality summaries
+- Your API key stays in your browser - privacy first
 
-5. **Display Summary**: Upon receiving the summary, the bookmarklet creates a modal dialog on the current page to display the result.
+## Installation Guide
 
-## Key Components
+### Mac
+- Show bookmarks bar: ⌘+Shift+B
+- Drag the Summarize button to your bookmarks bar
 
-- **getPageUrl()**: Retrieves the current page URL.
-- **showModal(summary)**: Creates and displays a modal with the summary.
-- **getSummary(url)**: Sends the URL to the Val Town function and retrieves the summary.
-- **executeSummarization()**: Orchestrates the summarization process.
-
-## Technical Details
-
-- The bookmarklet uses vanilla JavaScript and doesn't require any external libraries.
-- It makes an asynchronous fetch request to the Val Town API.
-- CORS mode is set to 'cors' and credentials are included in the request.
-- Error handling is implemented to alert users if summarization fails.
-
-## Usage
-
-1. Create a new bookmark in your browser.
-2. Set the bookmark's URL to the JavaScript code (minified version recommended).
-3. When on a webpage you want to summarize, click the bookmarklet.
-4. A modal will appear with the summary of the current page.
-
-## Note
-
-Ensure that the Val Town function URL is up-to-date and functioning. The current URL in the code is a placeholder and may need to be replaced with your actual Val Town function URL.
+### iOS
+- Copy the Summarize button link
+- Create a new bookmark in Safari
+- Paste the copied link as the bookmark URL

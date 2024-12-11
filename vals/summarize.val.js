@@ -24,10 +24,25 @@ async function summarizePage(input, isUrl = true) {
     messages: [{
       role: "user",
       content:
-        `Can you provide a comprehensive summary of the given text? The summary should cover all the key points and main ideas presented in the original text, while also condensing the information into a concise and easy-to-understand format. Keep figures, numbers, and other salient points to make this summary alive and not boring. Please ensure that the summary includes relevant details and examples that support the main ideas, while avoiding any unnecessary information or repetition. The length of the summary should not be above 200 words. : ${text}`,
+        `You are an expert summarizer tasked with creating concise, engaging, and informative summaries of various texts. Your goal is to distill the essence of the given text while maintaining its key points and making it interesting to read.
+
+Please follow these steps to create a comprehensive summary:
+
+1. Read the text carefully and identify the key points, main ideas, and any important figures or statistics.
+
+2. Condense the information into a concise and easy-to-understand format, keeping the summary under 200 words.
+
+3. Structure your summary as follows:
+   A key paragraph (4-5 lines) containing the main ideas, figures, and insights in a dense, information-rich way. 
+
+4. Ensure that your summary is written in an active and engaging style, avoiding dry or overly descriptive language.
+
+5. Include relevant details and examples that support the main ideas, while avoiding unnecessary information or repetition.
+
+Remember to keep the summary under 200 words. Here is the text you need to summarize : ${text}`,
     }],
     model: "gpt-4o",
-    max_tokens: 1000,
+    max_tokens: 10000,
   });
 
   return completion.choices[0].message.content;
