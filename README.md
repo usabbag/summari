@@ -8,7 +8,7 @@ This bookmarklet uses Val Town to provide quick summaries of web pages you're vi
 
 2. **Page URL Retrieval**: The script gets the current page's URL using `window.location.href`.
 
-3. **API Request**: The URL is sent to a Val Town function (hosted at `https://ulysse-propermaroonswordtail.web.val.run`) via a POST request.
+3. **API Request**: The URL is sent to a Val Town function (hosted at `https://https://ulysse-bookmarkdigest.web.val.run`) via a POST request.
 
 4. **Text Summarization**: The Val Town function processes the webpage content and generates a summary.
 

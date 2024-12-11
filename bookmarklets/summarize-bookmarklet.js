@@ -76,23 +76,43 @@
 
     // Function to send URL or text to Val Town val
     async function getSummary(url, text) {
-        const apiUrl = 'https://ulysse-propermaroonswordtail.web.val.run';
+        const apiKey = getApiKey();
+        if (!apiKey) {
+            throw new Error('API key required');
+        }
+
+        const apiUrl = 'https://ulysse-bookmarkdigest.web.val.run';
         const response = await fetch(apiUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'X-OpenAI-Key': apiKey
             },
             body: JSON.stringify({ url, text }),
-            mode: 'cors',
-            credentials: 'include',
+            mode: 'cors'
         });
 
         if (!response.ok) {
+            if (response.status === 401) {
+                localStorage.removeItem('openai_api_key');
+                throw new Error('Invalid API key');
+            }
             throw new Error(`HTTP error! status: ${response.status}`);
         }
 
         const data = await response.json();
         return data.summary;
+    }
+
+    function getApiKey() {
+        let key = localStorage.getItem('openai_api_key');
+        if (!key) {
+            key = prompt('Please enter your OpenAI API key:');
+            if (key) {
+                localStorage.setItem('openai_api_key', key);
+            }
+        }
+        return key;
     }
 
     // Main execution

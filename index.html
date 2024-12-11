@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web Page Summarizer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .bookmarklet {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+        .steps {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Web Page Summarizer</h1>
+    
+    <div class="steps">
+        <h2>One-Time Setup</h2>
+        <ol>
+            <li>Get your OpenAI API key from <a href="https://platform.openai.com/api-keys" target="_blank">OpenAI's website</a></li>
+            <li>Drag this button to your bookmarks bar: 
+                <a class="bookmarklet" href="javascript:(function(){/* minified code here */})();">
+                    📝 Summarize
+                </a>
+            </li>
+            <li>The first time you use it, you'll be prompted for your API key</li>
+        </ol>
+    </div>
+
+    <h2>Privacy</h2>
+    <p>Your API key is stored only in your browser's local storage and is never sent to our servers directly.</p>
+</body>
+</html>
