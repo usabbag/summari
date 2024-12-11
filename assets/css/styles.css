@@ -164,7 +164,6 @@ footer {
     margin-top: 40px;
     color: #666;
     font-size: 1rem;
-    border-top: 1px solid #eee;
 }
 
 footer a {
@@ -214,4 +213,10 @@ footer a {
     .feature {
         font-size: 1.2rem;
     }
+} 
+
+.powered-by {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
 } 
