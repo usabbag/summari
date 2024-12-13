@@ -49,8 +49,6 @@ Remember to keep the summary under 200 words. Here is the text you need to summa
 }
 
 export default async function handleRequest(req) {
-  const origin = req.headers.get("Origin") || "*";
-
   const headers = {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
@@ -61,16 +59,32 @@ export default async function handleRequest(req) {
 
   // Handle OPTIONS request for CORS preflight
   if (req.method === "OPTIONS") {
-    return new Response(null, { headers, status: 200 });
+    return new Response(null, { headers, status: 204 });
   }
 
   const apiKey = req.headers.get("X-OpenAI-Key");
-
   if (!apiKey) {
     return new Response(JSON.stringify({ error: "API key required" }), {
       status: 401,
       headers
     });
+  }
+
+  // Decrypt the API key if it's in our encrypted format
+  let decryptedKey = apiKey;
+  if (apiKey.includes('|')) {
+    try {
+      const [encryptedKey, fingerprint] = apiKey.split('|');
+      const decoded = atob(encryptedKey);
+      const decoder = new TextDecoder();
+      const data = new Uint8Array([...decoded].map(c => c.charCodeAt(0)));
+      decryptedKey = decoder.decode(data).replace(fingerprint, '');
+    } catch (error) {
+      return new Response(JSON.stringify({ error: "Invalid API key format" }), {
+        status: 401,
+        headers
+      });
+    }
   }
 
   const { url, text } = await req.json();
