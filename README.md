@@ -4,28 +4,34 @@
   <img src="assets/summarizio.png" width="120" alt="Summarizio Logo">
 </p>
 
-A browser-based tool that generates dense, meaningful 200-word summaries of any webpage. No bullet points, just clear insights.
+A browser-based tool that generates dense, meaningful 200-word summaries of any webpage using your OpenAI API key.
 
 ## Quick Setup
 
-1. Get your OpenAI API key from [platform.openai.com](https://platform.openai.com/api-keys)
-2. Visit [summariz.io](https://summariz.io) and drag the bookmarklet to your bookmarks bar
-3. Click the bookmark on any webpage to get an instant summary
+1. Get a new OpenAI API key from [platform.openai.com](https://platform.openai.com/api-keys)
+2. Visit [summariz.io](https://summariz.io)
+3. Input your API key and click "Generate"
+4. Drag the Summarize button to your bookmarks bar (desktop) or follow iOS instructions
 
 ## Features
 
-- Dense 200-word summaries that explain "what's this about!"
-- Works on Mac and iOS Safari
-- Powered by GPT-4 for high-quality summaries
-- Your API key stays in your browser - privacy first
+- 1-Click summaries anywhere - no apps or installations needed
+- Dense, 200-word summaries powered by GPT-4
+- Works with both URL and text extraction
+- Private: processes directly through your OpenAI account
+- No middleman, markups, or subscriptions - pay only API costs
 
 ## Installation Guide
 
-### Mac
-- Show bookmarks bar: ⌘+Shift+B
-- Drag the Summarize button to your bookmarks bar
+### Desktop
+- Show bookmarks bar (⌘+Shift+B on Mac)
+- Drag the "+Summarize" button to your bookmarks bar
 
 ### iOS
-- Copy the Summarize button link
-- Create a new bookmark in Safari
-- Paste the copied link as the bookmark URL
+1. Generate your bookmarklet on summariz.io
+2. Copy the generated bookmarklet code
+3. Open Safari and tap the bookmarks icon
+4. Tap "Add Bookmark"
+5. Name it "Summarize" and paste the bookmarklet code as the URL
+
+Backend runs on [val.town](https://val.town). View the [source code](https://www.val.town/v/ulysse/bookmarkdigest).
