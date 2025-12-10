@@ -42,11 +42,11 @@ javascript:(function(){
     }
 
     function getApiKey() {
-        let key = localStorage.getItem("openai_api_key");
+        let key = localStorage.getItem("anthropic_api_key");
         if (!key) {
-            key = prompt("Please enter your OpenAI API key, from platform.openai.com:");
+            key = prompt("Please enter your Anthropic API key, from console.anthropic.com:");
             if (key) {
-                localStorage.setItem("openai_api_key", key);
+                localStorage.setItem("anthropic_api_key", key);
             }
         }
         return key;
@@ -58,11 +58,11 @@ javascript:(function(){
             throw new Error("API key required");
         }
 
-        const response = await fetch("https://ulysse-bookmarkdigest.web.val.run", {
+        const response = await fetch("https://summari-worker.ulysse.workers.dev", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "X-OpenAI-Key": apiKey
+                "X-Anthropic-Key": apiKey
             },
             body: JSON.stringify({ url, text }),
             mode: "cors"
@@ -70,7 +70,7 @@ javascript:(function(){
 
         if (!response.ok) {
             if (response.status === 401) {
-                localStorage.removeItem("openai_api_key");
+                localStorage.removeItem("anthropic_api_key");
                 throw new Error("Invalid API key");
             }
             throw new Error(`HTTP error! status: ${response.status}`);

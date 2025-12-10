@@ -1,0 +1,10 @@
+name = "summari-worker"
+main = "worker/index.js"
+compatibility_date = "2024-01-01"
+
+[env.production]
+name = "summari-worker"
+vars = { ENVIRONMENT = "production" }
+
+# You'll need to set the OPENAI_API_KEY secret using:
+# wrangler secret put OPENAI_API_KEY

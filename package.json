@@ -1,0 +1,25 @@
+{
+  "name": "summari",
+  "version": "1.0.0",
+  "description": "AI-powered text summarization tool using OpenAI",
+  "main": "worker/index.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail"
+  },
+  "keywords": [
+    "cloudflare",
+    "workers",
+    "openai",
+    "summarization"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.32.1"
+  },
+  "devDependencies": {
+    "wrangler": "^4.53.0"
+  }
+}

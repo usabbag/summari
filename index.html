@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Summariz.io - Bookmarklet AI Summaries</title>
+    <title>Summariz.io - AI Summaries in a Bookmarklet</title>
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
@@ -14,18 +14,17 @@
                     <img src="assets/summarizio.png" alt="Summarizio Logo" class="logo">
                     <h1>Summariz.io</h1>
                 </div>
-                <p class="tagline">Concise, dense AI summaries in a bookmarklet</p>
-                
+                <p class="tagline">Dense AI summaries, one click away</p>
+
                 <div id="setupContainer">
-                    <form id="setupForm" style="display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 0.5rem;">
-                        <input 
-                            type="text" 
-                            id="apiKey" 
-                            placeholder="Your OpenAI API Key"
+                    <form id="setupForm">
+                        <input
+                            type="text"
+                            id="apiKey"
+                            placeholder="Your Anthropic API Key"
                             required
-                            style="padding: 1rem; border-radius: 8px; border: 1px solid #ccc; font-size: 1.3rem; width: 300px;"
                         >
-                        <button type="submit" class="bookmarklet" style="margin: 0; cursor: pointer;">
+                        <button type="submit" class="bookmarklet">
                             Generate
                         </button>
                     </form>
@@ -36,15 +35,15 @@
                         +Summarize
                     </a>
                     <small class="install-note" style="display: none;">
-                        <span class="desktop-only">↑ Drag to your bookmarks bar</span>
+                        <span class="desktop-only">Drag to your bookmarks bar</span>
                         <a href="#quick-setup" class="mobile-only">On mobile? Tap for instructions</a>
-                    </small>    
+                    </small>
                     <div class="reset-note">
                         <button onclick="copyGeneratedBookmarklet()" class="mobile-copy-button">
-                            Copy Bookmarklet Code
+                            Copy Code
                         </button>
                         <button id="resetBookmarklet">
-                            Reset API Key
+                            Reset
                         </button>
                     </div>
                 </div>
@@ -59,23 +58,21 @@
                         <button class="toggle-button" data-target="mobile-setup">iOS</button>
                     </div>
                 </h2>
-                
+
                 <div id="desktop-setup" class="setup-content active">
                     <ol class="steps">
-                        <li>Get a <a href="https://platform.openai.com/" target="_blank">new OpenAI API key</a></li>
-                        <li>Input your API key in the field above and click "Generate"</li>
-                        <li>Drag the Summarize button to your bookmarks bar and start summarizing!</li>
+                        <li>Get a <a href="https://console.anthropic.com/" target="_blank">new Anthropic API key</a></li>
+                        <li>Enter your API key above and click "Generate"</li>
+                        <li>Drag the Summarize button to your bookmarks bar</li>
                     </ol>
                 </div>
-                
+
                 <div id="mobile-setup" class="setup-content">
                     <ol class="steps">
-                        <li>Get a <a href="https://platform.openai.com/api-keys" target="_blank">new OpenAI API key</a></li>
-                        <li>Input your API key in the field above and tap "Generate"</li>
-                        <li>Copy the generated bookmarklet code using the button above</li>
-                        <li>Open Safari and tap the bookmarks icon</li>
-                        <li>Tap "Add Bookmark"</li>
-                        <li>Name it "Summarize" (or anything!) and paste the bookmarklet code as the URL</li>
+                        <li>Get a <a href="https://console.anthropic.com/" target="_blank">new Anthropic API key</a></li>
+                        <li>Enter your API key above and tap "Generate"</li>
+                        <li>Copy the bookmarklet code using the button</li>
+                        <li>Add a new bookmark in Safari and paste the code as the URL</li>
                     </ol>
                 </div>
             </div>
@@ -83,40 +80,29 @@
             <div class="section">
                 <div class="features-grid">
                     <div class="feature">
-                        <h3>1-Click, Anywhere</h3>
-                        <p>Works instantly on any browser or device - no app stores, accounts, permissions or installations needed. The joy of bookmarklets. The  <a href="https://www.val.town/v/ulysse/bookmarkdigest" target="_blank">backend</a> runs on <a href="https://val.town/">val.town</a>.</p>
+                        <h3>One Click, Anywhere</h3>
+                        <p>Works on any browser or device. No apps, accounts, or installations. Just the simplicity of bookmarklets.</p>
                     </div>
                     <div class="feature">
-                        <h3>Concise, Dense Summaries</h3>
-                        <p>We've crafted a prompt to give you dense, 200-word summaries that get to the point, using <a href="https://platform.openai.com/docs/models/gpt-4" target="_blank">GPT-4o</a>. No bullet points, just a clear, comprehensive summary.</p>
+                        <h3>Powered by Claude</h3>
+                        <p>Dense 200-word summaries via <a href="https://www.anthropic.com/claude" target="_blank">Claude Sonnet 4.5</a>. Clear, comprehensive, no bullet points.</p>
                     </div>
                     <div class="feature">
-                        <h3>URL or Text Extraction</h3>
-                        <p>The bookmarklet can summarize content using either the page URL or the text on the page, improving flexibility and accuracy.</p>
+                        <h3>Smart Extraction</h3>
+                        <p>Summarizes via URL first, falls back to page text. Works even on paywalled or dynamic content.</p>
                     </div>
                     <div class="feature">
-                        <h3>Private and At Cost</h3>
-                        <p>Summaries process directly through your OpenAI account at standard API rates. No middleman, no markups, no subscriptions.</p>
+                        <h3>Private & At Cost</h3>
+                        <p>Direct API calls through your Anthropic account. No middleman, no markups, no subscriptions.</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <footer>
-        Tool made by <a href="https://harsa.inc">Harsa, Inc</a>
+        Made by <a href="https://harsa.inc">Harsa</a>
     </footer>
     <script>
-    function copyBookmarklet() {
-        const bookmarkletCode = document.querySelector('.bookmarklet').getAttribute('href');
-        navigator.clipboard.writeText(bookmarkletCode).then(() => {
-            const button = document.querySelector('.copy-button');
-            button.textContent = 'Copied!';
-            setTimeout(() => {
-                button.textContent = 'Copy Code';
-            }, 2000);
-        });
-    }
-
     function isMobile() {
         return window.matchMedia('(max-width: 768px)').matches;
     }
@@ -127,7 +113,7 @@
             const mobileContent = document.getElementById('mobile-setup');
             const desktopButton = document.querySelector('[data-target="desktop-setup"]');
             const desktopContent = document.getElementById('desktop-setup');
-            
+
             mobileButton.classList.add('active');
             mobileContent.classList.add('active');
             desktopButton.classList.remove('active');
@@ -139,13 +125,12 @@
         button.addEventListener('click', () => {
             document.querySelectorAll('.toggle-button').forEach(b => b.classList.remove('active'));
             document.querySelectorAll('.setup-content').forEach(c => c.classList.remove('active'));
-            
+
             button.classList.add('active');
             document.getElementById(button.dataset.target).classList.add('active');
         });
     });
 
-    // Check if user already has a bookmarklet on page load
     document.addEventListener('DOMContentLoaded', function() {
         const hasBookmarklet = localStorage.getItem('hasBookmarklet');
         if (hasBookmarklet) {
@@ -154,7 +139,6 @@
         }
     });
 
-    // Handle reset
     document.getElementById('resetBookmarklet').addEventListener('click', function(e) {
         e.preventDefault();
         localStorage.removeItem('hasBookmarklet');
@@ -166,19 +150,19 @@
     document.getElementById('setupForm').addEventListener('submit', function(e) {
         e.preventDefault();
         const apiKey = document.getElementById('apiKey').value;
-        
-        if (!apiKey.startsWith('sk-')) {
-            alert('Please enter a valid OpenAI API key starting with "sk-"');
+
+        if (!apiKey.startsWith('sk-ant-')) {
+            alert('Please enter a valid Anthropic API key starting with "sk-ant-"');
             return;
         }
-        
+
         const encodedKey = btoa(apiKey);
-        
-        const bookmarkletCode = `javascript:(function(){function e(){return window.location.href}function t(){return document.body.innerText}function n(){const e=document.createElement("div");e.id="summaryLoader",e.style.cssText="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background-color:#007311;color:white;padding:20px;border-radius:10px;z-index:10001;font-family:Arial,sans-serif;",e.textContent="🐦🤖 Summarizing...",document.body.appendChild(e)}function o(){const e=document.getElementById("summaryLoader");e&&document.body.removeChild(e)}function r(e,t){if(!document.getElementById("summaryModal")){const n=document.createElement("div");n.id="summaryModal",n.style.cssText="position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:10000;font-family:-apple-system,system-ui,sans-serif;";const o=document.createElement("div");o.style.cssText="background-color:#fff;padding:24px;border-radius:12px;width:600px;max-width:90%;max-height:80vh;overflow-y:auto;font-size:16px;line-height:1.5;box-shadow:0 4px 12px rgba(0,0,0,0.15);",o.innerHTML=\`<h2 style="margin:0 0 16px;font-size:20px;color:#1f2937">Summary</h2><p style="margin:0 0 16px;font-size:14px;color:#4b5563"><strong>Source: \${t}</strong></p><p style="margin:0;font-size:18px;color:#1f2937">\${e}</p><button id="closeModal" style="margin-top:20px;padding:8px 16px;background:#007311;color:white;border:none;border-radius:6px;cursor:pointer">Close</button>\`,n.appendChild(o),document.body.appendChild(n),document.getElementById("closeModal").addEventListener("click",()=>{document.body.removeChild(n)})}}function i(){return atob('${encodedKey}')}async function a(e,t){const n=i();if(!n)throw new Error("API key required");const o=await fetch("https://ulysse-bookmarkdigest.web.val.run",{method:"POST",headers:{"Content-Type":"application/json","X-OpenAI-Key":n},body:JSON.stringify({url:e,text:t}),mode:"cors"});if(!o.ok){if(401===o.status)throw new Error("Invalid API key");throw new Error(\`HTTP error! status: \${o.status}\`)}return(await o.json()).summary}async function s(){const i=e();n();try{const e=await a(i);o(),r(e,"URL")}catch(e){console.error("Error:",e);try{const e=t(),i=await a(null,e);o(),r(i,"Page Text")}catch(e){console.error("Error:",e),o(),alert("Failed to summarize the page. Please try again later.")}}}s()})()`;
+
+        const bookmarkletCode = `javascript:(function(){function e(){return window.location.href}function t(){return document.body.innerText}function n(){const e=document.createElement("div");e.id="summaryLoader",e.style.cssText="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background-color:#d95a1b;color:white;padding:20px;border-radius:12px;z-index:10001;font-family:-apple-system,system-ui,sans-serif;font-size:16px;box-shadow:0 4px 20px rgba(0,0,0,0.15);",e.textContent="Summarizing...",document.body.appendChild(e)}function o(){const e=document.getElementById("summaryLoader");e&&document.body.removeChild(e)}function r(e,t){if(!document.getElementById("summaryModal")){const n=document.createElement("div");n.id="summaryModal",n.style.cssText="position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;z-index:10000;font-family:-apple-system,system-ui,sans-serif;backdrop-filter:blur(4px);";const o=document.createElement("div");o.style.cssText="background-color:#fffcf9;padding:28px;border-radius:16px;width:560px;max-width:90%;max-height:80vh;overflow-y:auto;font-size:16px;line-height:1.6;box-shadow:0 8px 32px rgba(0,0,0,0.12);color:#2d2a26;",o.innerHTML=\`<h2 style="margin:0 0 12px;font-size:22px;font-weight:500;color:#2d2a26">Summary</h2><p style="margin:0 0 16px;font-size:13px;color:#6b6560">Source: \${t}</p><p style="margin:0;font-size:17px;color:#2d2a26;line-height:1.65">\${e}</p><button id="closeModal" style="margin-top:24px;padding:10px 20px;background:#d95a1b;color:white;border:none;border-radius:8px;cursor:pointer;font-size:15px;font-weight:500;transition:background 0.2s">Close</button>\`,n.appendChild(o),document.body.appendChild(n),document.getElementById("closeModal").addEventListener("click",()=>{document.body.removeChild(n)}),document.getElementById("closeModal").addEventListener("mouseenter",function(){this.style.background="#b84a15"}),document.getElementById("closeModal").addEventListener("mouseleave",function(){this.style.background="#d95a1b"})}}function i(){return atob('${encodedKey}')}async function a(e,t){const n=i();if(!n)throw new Error("API key required");const o=await fetch("https://summari-worker.ulysse.workers.dev",{method:"POST",headers:{"Content-Type":"application/json","X-Anthropic-Key":n},body:JSON.stringify({url:e,text:t}),mode:"cors"});if(!o.ok){if(401===o.status)throw new Error("Invalid API key");throw new Error(\`HTTP error! status: \${o.status}\`)}return(await o.json()).summary}async function s(){const i=e();n();try{const e=await a(i);o(),r(e,"URL")}catch(e){console.error("Error:",e);try{const e=t(),i=await a(null,e);o(),r(i,"Page Text")}catch(e){console.error("Error:",e),o(),alert("Failed to summarize the page. Please try again later.")}}}s()})()`;
 
         const bookmarklet = document.getElementById('bookmarklet');
         bookmarklet.href = bookmarkletCode;
-        
+
         document.getElementById('setupContainer').style.display = 'none';
         document.getElementById('bookmarkletContainer').style.display = 'block';
         localStorage.setItem('hasBookmarklet', 'true');
@@ -191,7 +175,7 @@
             const button = document.querySelector('.mobile-copy-button');
             button.textContent = 'Copied!';
             setTimeout(() => {
-                button.textContent = 'Copy Bookmarklet Code';
+                button.textContent = 'Copy Code';
             }, 2000);
         });
     }
